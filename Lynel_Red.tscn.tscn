@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cgp2dys6ie2l5"]
+
+[ext_resource type="PackedScene" uid="uid://cnahstphuapx1" path="res://lynel.tscn" id="1_ccmju"]
+
+[node name="Lynel" unique_id=22924256 instance=ExtResource("1_ccmju")]
+position = Vector2(1800, 500)
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=786835983]
+animation = &"death_up"
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(2027984300) index="0" unique_id=253539285]
+position = Vector2(-4, -5)
+
+[node name="CollisionShape2D" parent="AttackHitbox" parent_id_path=PackedInt32Array(1429942406) index="0" unique_id=701306627]
+position = Vector2(-3, -26)
+metadata/_edit_lock_ = true

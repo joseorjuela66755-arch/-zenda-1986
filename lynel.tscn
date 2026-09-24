@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://cnahstphuapx1"]
+
+[ext_resource type="Texture2D" uid="uid://c41soq7bdxra6" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Blue_Back.png" id="1_dac6g"]
+[ext_resource type="Script" uid="uid://c6tcvi8i870yp" path="res://lynel.gd" id="1_t2riw"]
+[ext_resource type="Texture2D" uid="uid://c217ivo8dcqvv" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Blue_Left.png" id="2_t2riw"]
+[ext_resource type="Texture2D" uid="uid://brwbnvey81g5w" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Blue_Right.png" id="3_ygphm"]
+[ext_resource type="Texture2D" uid="uid://78mnpoda17rh" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Blue_Front.png" id="4_fd03m"]
+[ext_resource type="Texture2D" uid="uid://ciwxpaqw5xiby" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Red_Back.png" id="5_r4oq5"]
+[ext_resource type="Texture2D" uid="uid://cd13w3dbmpsrg" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Red_Left.png" id="6_mncit"]
+[ext_resource type="Texture2D" uid="uid://qy4q7io2fkn6" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Red_Right.png" id="7_0csqb"]
+[ext_resource type="Texture2D" uid="uid://yj6vqang6oa6" path="res://AssetsEX/02_Overworld_Enemies/Lynel_Red_Front.png" id="8_tkdae"]
+[ext_resource type="PackedScene" uid="uid://bdmwa2uqgfxjv" path="res://bomerang.tscn" id="10_ygphm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbh1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dac6g")
+}],
+"loop": 1,
+"name": &"charge_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2riw")
+}],
+"loop": 1,
+"name": &"charge_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ygphm")
+}],
+"loop": 1,
+"name": &"charge_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fd03m")
+}],
+"loop": 1,
+"name": &"charge_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_r4oq5")
+}],
+"loop": 1,
+"name": &"death_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mncit")
+}],
+"loop": 1,
+"name": &"death_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0csqb")
+}],
+"loop": 1,
+"name": &"death_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_tkdae")
+}],
+"loop": 1,
+"name": &"death_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dac6g")
+}],
+"loop": 1,
+"name": &"hurt_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2riw")
+}],
+"loop": 1,
+"name": &"hurt_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ygphm")
+}],
+"loop": 1,
+"name": &"hurt_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fd03m")
+}],
+"loop": 1,
+"name": &"hurt_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dac6g")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2riw")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ygphm")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fd03m")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbh1w"]
+radius = 17.0
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2riw"]
+radius = 90.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbh1w"]
+size = Vector2(26.999998, 27)
+
+[node name="Lynel" type="CharacterBody2D" unique_id=22924256]
+position = Vector2(1000, 400)
+collision_layer = 2
+collision_mask = 524289
+script = ExtResource("1_t2riw")
+PROJECTILE_SCENE = ExtResource("10_ygphm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=786835983]
+position = Vector2(-2, 0)
+scale = Vector2(1.125, 1)
+sprite_frames = SubResource("SpriteFrames_jbh1w")
+animation = &"walk_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=622834376]
+visibility_layer = 524289
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_jbh1w")
+
+[node name="RayCast2D_UP" type="RayCast2D" parent="." unique_id=301220594]
+target_position = Vector2(0, -20)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_DOWN" type="RayCast2D" parent="." unique_id=2106841069]
+target_position = Vector2(0, 20)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_LEFT" type="RayCast2D" parent="." unique_id=115354530]
+target_position = Vector2(-20, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_RIGHT" type="RayCast2D" parent="." unique_id=2133652852]
+target_position = Vector2(20, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=2027984300]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=253539285]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 1)
+shape = SubResource("CircleShape2D_t2riw")
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=1429942406]
+position = Vector2(3, 26)
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=701306627]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(-4, -26)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_jbh1w")
+
+[node name="StateTimer" type="Timer" parent="." unique_id=419396710]
+
+[node name="bomerang_tscn" parent="." unique_id=918758837 instance=ExtResource("10_ygphm")]
+position = Vector2(-613, -177)
+
+[node name="bomerang_tscn2" parent="." unique_id=927668471 instance=ExtResource("10_ygphm")]
+position = Vector2(-819, -166)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]

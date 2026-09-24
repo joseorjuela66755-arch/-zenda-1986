@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://ppjnegee3p4f"]
+
+[ext_resource type="Script" uid="uid://bu3gsvdftajhs" path="res://octorok.gd" id="1_1kio1"]
+[ext_resource type="Texture2D" uid="uid://g2csrbl6tk6g" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Red_Down.png" id="1_w77h2"]
+[ext_resource type="Texture2D" uid="uid://crhx6krm4lh24" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Red_Left.png" id="2_1kio1"]
+[ext_resource type="Texture2D" uid="uid://bjl4530rwc0ha" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Red_Right.png" id="3_45kqd"]
+[ext_resource type="Texture2D" uid="uid://c4lsm5lerwapa" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Red_Up.png" id="4_37a8u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ostoq"]
+radius = 7.071068
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpnuc"]
+atlas = ExtResource("1_w77h2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y13xt"]
+atlas = ExtResource("1_w77h2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvi1y"]
+atlas = ExtResource("2_1kio1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cku4c"]
+atlas = ExtResource("2_1kio1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s50vh"]
+atlas = ExtResource("3_45kqd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ve3"]
+atlas = ExtResource("3_45kqd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fccml"]
+atlas = ExtResource("4_37a8u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd8ak"]
+atlas = ExtResource("4_37a8u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajtct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpnuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y13xt")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvi1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cku4c")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s50vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ve3")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fccml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kd8ak")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[node name="Octorok" type="CharacterBody2D" unique_id=1881121870]
+collision_layer = 2
+collision_mask = 524289
+script = ExtResource("1_1kio1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927066037]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_ostoq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=387211814]
+sprite_frames = SubResource("SpriteFrames_ajtct")
+animation = &"walk_down"
+
+[node name="RayCast2D_RIGHT" type="RayCast2D" parent="." unique_id=889453064]
+position = Vector2(-1, 0)
+target_position = Vector2(12, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_LEFT" type="RayCast2D" parent="." unique_id=1150634694]
+position = Vector2(1, 0)
+target_position = Vector2(-13, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_UP" type="RayCast2D" parent="." unique_id=865661219]
+target_position = Vector2(0, -11)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_DOWN" type="RayCast2D" parent="." unique_id=791152836]
+position = Vector2(0, -1)
+target_position = Vector2(0, 12)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1661635815]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

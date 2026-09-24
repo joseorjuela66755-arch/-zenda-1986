@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cjm2elvxp8flr"]
+
+[ext_resource type="Script" uid="uid://dmonr2onrymka" path="res://octorok_blue.gd" id="1_mjjtn"]
+[ext_resource type="Texture2D" uid="uid://dso1l0gfgsvhg" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Blue_Down.png" id="2_q5avg"]
+[ext_resource type="Texture2D" uid="uid://dd541h0v5g8wg" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Blue_Left.png" id="3_3sw6s"]
+[ext_resource type="Texture2D" uid="uid://dkf8aya6h46pf" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Blue_Right.png" id="4_5keu7"]
+[ext_resource type="Texture2D" uid="uid://c1wghxn1fbtip" path="res://AssetsEX/02_Overworld_Enemies/Octorok_Blue_Up.png" id="5_mwlnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rxio"]
+atlas = ExtResource("2_q5avg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ypd6"]
+atlas = ExtResource("2_q5avg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45il3"]
+atlas = ExtResource("3_3sw6s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5be7"]
+atlas = ExtResource("3_3sw6s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba2ji"]
+atlas = ExtResource("4_5keu7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke5md"]
+atlas = ExtResource("4_5keu7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6fg8"]
+atlas = ExtResource("5_mwlnb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpmva"]
+atlas = ExtResource("5_mwlnb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ostoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rxio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ypd6")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45il3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5be7")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba2ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke5md")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6fg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpmva")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q3x2o"]
+radius = 7.0
+
+[node name="OctorokBlue" type="CharacterBody2D" unique_id=1297794043]
+collision_layer = 2
+collision_mask = 524289
+script = ExtResource("1_mjjtn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1151745256]
+sprite_frames = SubResource("SpriteFrames_ostoq")
+animation = &"walk_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964515090]
+shape = SubResource("CircleShape2D_q3x2o")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="RayCast2D_UP" type="RayCast2D" parent="." unique_id=1395610695]
+target_position = Vector2(0, -11)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_DOWN" type="RayCast2D" parent="." unique_id=2121555843]
+target_position = Vector2(0, 13)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_LEFT" type="RayCast2D" parent="." unique_id=617761908]
+target_position = Vector2(-12, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="RayCast2D_RIGHT" type="RayCast2D" parent="." unique_id=244039537]
+target_position = Vector2(13, 0)
+collision_mask = 524289
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2143220650]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bdmwa2uqgfxjv"]
+
+[ext_resource type="Script" uid="uid://bjsg05yeapbg8" path="res://bomerang.gd" id="1_n02qp"]
+[ext_resource type="Texture2D" uid="uid://bf56fdgwa7q36" path="res://AssetsEX/01_Items/Boomerang.png" id="2_n02qp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olwj8"]
+radius = 168.57639
+
+[node name="Bomerang" type="Area2D" unique_id=927668471]
+light_mask = 524289
+visibility_layer = 0
+script = ExtResource("1_n02qp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=276865188]
+z_index = 10
+position = Vector2(-15.5, -14)
+scale = Vector2(1.778, 4.4)
+texture = ExtResource("2_n02qp")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.50003, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=266547888]
+light_mask = 513
+visibility_layer = 0
+position = Vector2(-21, 172)
+shape = SubResource("CircleShape2D_olwj8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
